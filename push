@@ -1,0 +1,26 @@
+#!/bin/sh
+
+LOCAL_KEY=88af0bf2-b30d-44b8-a9f9-c865ee0ce4ed
+PRODUCTION_KEY=5086d3e7-41fa-4c94-aba3-3772c0975699
+
+echo "Pushing to master..."
+git add -A
+git commit -m "Push content"
+git push -u origin master
+echo
+echo
+git checkout gh-pages
+git rebase master
+echo
+echo "Replacino Api key..."
+grep -l "$LOCAL_KEY" static/js/main.js | xargs sed -i -e "s/$LOCAL_KEY/$PRODUCTION_KEY/g"
+grep -l "$LOCAL_KEY" host/static/js/main.js | xargs sed -i -e "s/$LOCAL_KEY/$PRODUCTION_KEY/g"
+grep -l "$LOCAL_KEY" client/static/js/main.js | xargs sed -i -e "s/$LOCAL_KEY/$PRODUCTION_KEY/g"
+echo
+echo "Pushing to gh-pages..."
+git add -A
+git commit -m "Push content"
+git push origin gh-pages
+echo
+echo "Retuning to master branch..."
+git checkout master
