@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Web RTC Chat</title>
+    <meta charset="utf-8"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"/>
+    <link href="../static/css/custom.css" rel="stylesheet"/>
+  </head>
+  <body>
+
+    <div class="container">
+      <h4>Chat room</h4>
+      <p data-bind="visible: false">Waithin for anyone</p>
+      <form data-bind="with: editingMessage">
+        <div>
+          <label for="inputAuthor">Author :</label>
+          <div>
+            <input id="inputAuthor" type="text" data-bind="value: author"/>
+          </div>
+
+          <div>
+            <label for="inputBody">Message :</label>
+            <div>
+              <textarea class="u-full-width" id="inputBody" data-bind="value: body"></textarea>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <button class="button-primary" data-bind="click: $parent.send.bind($parent)">Send</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <h4>Messages</h4>
+      <div data-bind="foreach: messages">
+        <div>
+          <p class="box" data-bind="text: author"></p>
+          <p class="box">  says </p>
+          <pre class="box" data-bind="text:body"></pre>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.5.1/jquery.json.min.js"></script>
+    <script src="https://skyway.io/dist/0.3/peer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/purl/2.3.1/purl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha256.js"></script>
+    <script data-main="static/js/main.js" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js"></script>
+  </body>
+</html>

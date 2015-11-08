@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Web RTC Chat</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="container">
+      <h4>Web RTC Chat</h4>
+      <p>Please create a chat room or enter the room with ID</p>
+      <a href="host/">Create Chat Room</a>
+      <form action="client/" method="GET">
+        <label for="id">or enter the room.</label>
+        <input type="text" name="id" id="id"/>
+        <input class="button-primary" type="submit" value="Enter the room"/>
+      </form>
+
+      <p>Chat rooms now opened</p>
+      <ul data-bind="foreach: rooms">
+        <li><a data-bind="text: $data, attr: { href: 'client/?id=' + $data}" ></a></li>
+      </ul>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-json/2.5.1/jquery.json.min.js"></script>
+    <script src="https://skyway.io/dist/0.3/peer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/purl/2.3.1/purl.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha256.js"></script>
+    <script data-main="static/js/main.js" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js"></script>
+  </body>
+</html>
